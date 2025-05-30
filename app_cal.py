@@ -111,9 +111,22 @@ with st.form("calorie_form"):
 
 # --- PREDICTION ---
 if submit:
-    with st.spinner("Calculating..."):
-        # Your prediction code here
-        st.success(f"Estimated burn: **350 kcal**")  # Example output
+    # Encode sex (1 for Male, 0 for Female)
+    sex_male = 1 if sex == "Male" else 0
+    
+    # Prepare input array for the model
+    input_data = np.array([[duration, heart_rate, body_temp, heart_rate * duration]])
+    
+    # Optional: Scale features if a scaler was used during training
+    input_data = scaler.transform(input_data)
+    
+    # Show spinner while predicting
+    with st.spinner('Crunching numbers... 🔍'):
+        prediction = model.predict(input_data)
+    
+    # Display results
+    st.success(f"✅ Estimated Calories Burned: **{prediction[0][0]:.2f} kcal**")
+    st.markdown("💡 _This estimation helps tailor your workouts and diet plans._")
 
 # --- FOOTER ---
 st.divider()

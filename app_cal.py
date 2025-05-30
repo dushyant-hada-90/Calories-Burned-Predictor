@@ -80,7 +80,7 @@ with st.expander("ℹ️ About this project"):
     st.markdown("""
     This app uses a pre-trained Artificial Neural Network (ANN) model to estimate calorie burn during workouts.
     
-    **Features used**:
+    **prominent Features affecting predictions:**:
     - Workout Duration
     - Heart Rate
     - Body Temperature

@@ -74,7 +74,27 @@
 
 
 import streamlit as st
+import numpy as np
+import tensorflow as tf
+import joblib
 
+# --- MODEL LOADING ---
+# Load the pre-trained ANN model (compile=False avoids custom loss function issues)
+# model = tf.keras.models.load_model('calorie_ann_model.keras', compile=False)
+@st.cache_resource
+def load_model():
+    return tf.keras.models.load_model('calorie_ann_model.keras', compile=False)
+
+
+model = load_model()
+
+# Optional: Load a scaler if you used feature scaling during training
+# scaler = joblib.load("scaler.pkl")
+@st.cache_resource
+def load_scaler():
+    return joblib.load("scaler.pkl")
+
+scaler = load_scaler()
 # --- PAGE CONFIG ---
 st.set_page_config(
     page_title="Calorie Burn Estimator", 
@@ -97,13 +117,13 @@ with st.form("calorie_form"):
     col1, col2 = st.columns(2)
     
     with col1:
-        age = st.slider("Age", 10, 100, 25, help="Select your age")
-        height = st.slider("Height (cm)", 100, 250, 175)
-        weight = st.slider("Weight (kg)", 30, 200, 70)
+        age = st.slider("Age", 15, 79, 25, help="Select your age")
+        height = st.slider("Height (cm)", 120, 240, 175)
+        weight = st.slider("Weight (kg)", 30, 140, 70)
         
     with col2:
-        duration = st.slider("Workout Duration (min)", 1, 300, 30)
-        heart_rate = st.slider("Heart Rate (bpm)", 30, 220, 120)
+        duration = st.slider("Workout Duration (min)", 1, 30,10)
+        heart_rate = st.slider("Heart Rate (bpm)", 60, 135, 110)
         body_temp = st.slider("Body Temp (°C)", 35.0, 45.0, 37.0, step=0.1)
     
     sex = st.radio("Sex", ["Male", "Female"], horizontal=True)

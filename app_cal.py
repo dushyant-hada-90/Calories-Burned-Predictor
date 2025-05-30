@@ -105,7 +105,7 @@ if submit:
 st.divider()
 st.markdown("""
 ---
-Built with ❤️ by Dushyant Singh Hada  
-[GitHub](https://github.com/dushyant-hada-90) • [LinkedIn](https://www.linkedin.com/in/dushyant-hada-7403912b0/) • [Email](mailto:dushyanthada90@gmail.com • [Kaggle](https://www.kaggle.com/u23ch034)
+Built by Dushyant Singh Hada  
+[GitHub](https://github.com/dushyant-hada-90) • [LinkedIn](https://www.linkedin.com/in/dushyant-hada-7403912b0/) • [📧 Gmail](mailto:dushyanthada90@gmail.com) • [Kaggle](https://www.kaggle.com/u23ch034)
 """)
 

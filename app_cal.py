@@ -58,7 +58,7 @@ import joblib
 model = tf.keras.models.load_model('calorie_ann_model.keras', compile=False)
 
 # Optional: Load a scaler if you used feature scaling during training
-# scaler = joblib.load("scaler.pkl")
+scaler = joblib.load("scaler.pkl")
 
 # --- PAGE CONFIG ---
 st.set_page_config(page_title="Calorie Burn Estimator", page_icon="💪")
@@ -90,7 +90,7 @@ if submitted:
     input_data = np.array([[duration, heart_rate, body_temp, heart_rate * duration]])
     
     # Optional: Scale features if a scaler was used during training
-    # input_data = scaler.transform(input_data)
+    input_data = scaler.transform(input_data)
     
     # Show spinner while predicting
     with st.spinner('Crunching numbers... 🔍'):

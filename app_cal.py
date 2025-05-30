@@ -4,7 +4,7 @@ import tensorflow as tf
 import joblib  # if you're using a scaler like StandardScaler
 
 # Load trained model
-model = tf.keras.models.load_model('calorie_ann_model.keras')  # replace with your actual model path
+model = tf.keras.models.load_model('calorie_ann_model.keras',custom_objects={"rmlse":rmlse})  # replace with your actual model path
 
 # Load scaler if used during training
 # scaler = joblib.load("scaler.pkl")  # Uncomment if using scaler

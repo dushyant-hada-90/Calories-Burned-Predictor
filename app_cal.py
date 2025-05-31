@@ -84,9 +84,10 @@ with st.expander("ℹ️ About this project"):
     - Workout Duration
     - Heart Rate
     - Body Temperature
-    - Derived metrics (like HeartRate × Duration)
+    - Derived metrics (like HeartRate × Duration etc.)
 
     🔍 Built using TensorFlow, Streamlit, and deployed on Render.
+    it has a more convenient use case if integrated with smartwatches and other fitness electronics.
     """)
 
 # --- INPUT FORM ---
@@ -94,7 +95,7 @@ with st.form("calorie_form"):
     col1, col2 = st.columns(2)
     
     with col1:
-        age = st.slider("Age", 15, 79, 25, help="Select your age")
+        age = st.slider("Age", 15, 79, 25)
         height = st.slider("Height (cm)", 120, 240, 175)
         weight = st.slider("Weight (kg)", 30, 140, 70)
         
@@ -112,7 +113,7 @@ if submit:
         st.error("Body temperature must be between 35.0°C and 45.0°C")
     else:
         sex_male = 1 if sex == "Male" else 0
-        input_data = np.array([[duration, heart_rate, body_temp, heart_rate * duration]])
+        input_data = np.array([[duration*heart_rate, heart_rate*body_temp,age* duration,body_temp*body_temp,height*heart_rate,weight*heart_rate,age*heart_rate]])
         
         if scaler:
             input_data = scaler.transform(input_data)
